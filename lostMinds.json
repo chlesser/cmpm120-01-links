@@ -129,7 +129,17 @@
                 {
                     "Text": "South Door",
                     "Type": "Door",
-                    "Target": "Warden"
+                    "Target": "Warden",
+                    "FailText": "The door is locked. You need a keycard to open it."
+                },
+                {
+                    "Text": "Power the Generator",
+                    "Enabled": true,
+                    "Location": "Center",
+                    "Type": "Station",
+                    "Station": "Generator",
+                    "ActiveResponse": "You turn the generator on. It sputters to life, and the lights flicker on. Regaining your sight elates you, but a far-off howl to the east chills you.",
+                    "InactiveResponse": "You need a battery to power the generator."
                 }
             ]
         },
@@ -226,6 +236,15 @@
                     "Text": "Enter the breach...?",
                     "Type": "Door",
                     "Target": "Breach"
+                },
+                {
+                    "Text": "Use the analyzer",
+                    "Enabled": true,
+                    "Location": "Laboratory",
+                    "Type": "Station",
+                    "Station": "Lab",
+                    "ActiveResponse": "You put the egg in the lab. After a few moments, the screen pops out a message: 'Egg matches the DNA of patient #731. Human DNA retention: 90%'",
+                    "InactiveResponse": "You need something to analyze to power the generator."
                 }
             ]
         },
@@ -300,11 +319,28 @@
                 },
                 {
                     "Text": "Grab the Egg",
-                    "Enabled": true,
+                    "Enabled": false,
                     "Location": "Nest",
                     "Type": "Item",
                     "Item": "Egg",
                     "Response": "You gingerly take the egg. Perhaps you can examine this."
+                },
+                {
+                    "Text": "Kill the Monster",
+                    "Enabled": true,
+                    "Location": "Nest",
+                    "Type": "Station",
+                    "Station": "Lab",
+                    "ActiveResponse": "The monster lays on the ground, its grotesque form twitching. Without daring to breathe, you take the fireaxe and swing it down, severing its head from its gangly form.",
+                    "InactiveResponse": "Though the monster sleeps, you have no weapon to kill it with."
+                },
+                {
+                    "Text": "Destroy the Egg",
+                    "Enabled": true,
+                    "Location": "Nest",
+                    "Type": "Station",
+                    "Station": "Lab",
+                    "ActiveResponse": "Your mind clouds with rage. This creature has hunted you for far too long. You will ensure its reign of terror does not ripen."
                 }
             ]
         }

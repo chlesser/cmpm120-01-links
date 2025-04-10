@@ -1,5 +1,6 @@
 //global variables defined here.
 let lightLevel = -1;
+let setOrder = 0;
 
 //this is for the items
 let batteryCount = 0;
@@ -7,6 +8,8 @@ let fireAxe = false;
 let IDCard = false;
 let gasMask = false;
 let egg = false;
+let secret = false;
+let deadMonster = false;
 
 //handler for the monster
 let monsterActive = false;
@@ -31,7 +34,7 @@ class Location extends Scene {
             this.engine.show(locationData.Body);
         }
         
-        if(locationData.Choices?.length >= 1 && lightLevel >= 0) {
+        if(locationData.Choices?.length >= 1) {
             for(let choice of locationData.Choices) {
                 console.log(choice.Text, choice.Target);
                 if(choice.Type == "Item") {
@@ -39,34 +42,108 @@ class Location extends Scene {
                         continue;
                     }
                 }
-                this.engine.addChoice(choice.Text, choice);
+                if(choice.Type == "Door" && lightLevel > 0) {
+                    this.engine.addChoice(choice.Text, choice);
+                } else if(choice.Type == "Station") {
+                    if(!choice.Enabled) {
+                        continue;
+                    }
+                } else if (choice.Type == "Door" && lightLevel < 0) {
+                    let temp;
+                    let num;
+                    while(!temp) {
+                        num = Math.ceil(Math.random() * (locationData.Choices.length - 1));
+                        if(locationData.Choices[num].Type != "Item" && locationData.Choices[num].Enabled || locationData.Choices[num].Type != "Item") {
+                            console.log("found a choice", [num].Text, num);
+                            temp = locationData.Choices[num];
+                        }
+                    }
+                    if(setOrder == 0) {
+                        this.engine.addChoice("Randomly Explore", locationData.Choices[2]);
+                        setOrder++;
+                    } else if(setOrder == 1) {
+                        this.engine.addChoice("Randomly Explore", locationData.Choices[1]);
+                        setOrder++;
+                    } else if (setOrder == 2) {
+                        this.engine.addChoice("Randomly Explore", locationData.Choices[1]);
+                        setOrder++;
+                    } else {
+                        this.engine.addChoice("Randomly Explore", temp);
+                    }
+                }
             }
-        } else {
-            // let temp;
-            // let num;
-            // while(!temp) {
-            //     num = Math.ceil(Math.random() * (locationData.Choices.length - 1));
-            //     if(locationData.Choices[num].Type == "Item" && locationData.Choices[num].Enabled || locationData.Choices[num].Type != "Item") {
-            //         console.log("found a choice", [num].Text, num);
-            //         temp = locationData.Choices[num];
-            //     }
-            // }
-            
-            this.engine.addChoice("Randomly Explore", locationData.Choices[1]);
-        }
+        } 
     }
 
     handleChoice(choice) {
         if (choice.Type == "Door")
         {
-            this.engine.show("&gt; "+choice.Text);
-            if(lightLevel >= 1) LightLevel--;
-            if(lightLevel == 0) monsterDistance--;
-            this.engine.gotoScene(Location, choice.Target);
+            if(choice.Target != "Warden")
+            {
+                this.engine.show("&gt; "+choice.Text);
+                if(lightLevel >= 1) LightLevel--;
+                if(lightLevel == 0) monsterDistance--;
+                this.engine.gotoScene(Location, choice.Target);
+            } else {
+                if(IDCard) {
+                    this.engine.show("&gt; "+choice.Text);
+                    if(lightLevel >= 1) LightLevel--;
+                    if(lightLevel == 0) monsterDistance--;
+                    this.engine.gotoScene(Location, choice.Target);
+                } else {
+                    this.engine.show("&gt; "+choice.FailText);
+                    this.engine.gotoScene(Location, choice.Location);
+                }
+            }
+            
         }
         else if (choice.Type == "Station")
         {
-
+            if(choice.Station == "Generator") {
+                if(batteryCount > 0) {
+                    this.engine.show("&gt; "+choice.ActiveResponse);
+                    batteryCount--;
+                    if(lightLevel < 0) {
+                        lightLevel = 10;
+                    } else {
+                        lightLevel += 10;
+                    }
+                    this.engine.gotoScene(Location, choice.Location);
+                } else {
+                    this.engine.show("&gt; "+choice.InactiveResponse);
+                    if(lightLevel >= 1) LightLevel++;
+                    if(lightLevel == 0) monsterDistance++;
+                }
+            } else if(choice.Station == "Lab") {
+                if(egg) {
+                    this.engine.show("&gt; "+choice.ActiveResponse);
+                    choice.Enabled = false;
+                    secret = true;
+                    this.engine.gotoScene(Location, choice.Location);
+                } else {
+                    this.engine.show("&gt; "+choice.InactiveResponse);
+                    this.engine.gotoScene(Location, choice.Location);
+                    if(lightLevel >= 1) LightLevel++;
+                    if(lightLevel == 0) monsterDistance++;
+                }
+            } else if(choice.Station == "Monster") {
+                if(fireAxe) {
+                    this.engine.show("&gt; "+choice.ActiveResponse);
+                    egg = false;
+                    choice.Enabled = false;
+                    this.engine.gotoScene(Location, choice.Location);
+                } else {
+                    this.engine.show("&gt; "+choice.InactiveResponse);
+                    this.engine.gotoScene(Location, choice.Location);
+                    if(lightLevel >= 1) LightLevel++;
+                    if(lightLevel == 0) monsterDistance++;
+                }
+            } else if (choice.Station == "Smash") {
+                this.engine.show("&gt; "+choice.ActiveResponse);
+                choice.Enabled = false;
+                this.engine.storyData.Locations[Nest].Choices[2].Enabled = false;
+                this.engine.gotoScene(Location, choice.Location);
+            }
         }
         else if (choice.Type == "Item")
         {
@@ -96,6 +173,7 @@ class Location extends Scene {
                 egg = true;
                 this.engine.show("&gt; "+choice.Response);
                 choice.Enabled = false;
+                this.engine.storyData.Locations[Nest].Choices[4].Enabled = false;
                 this.engine.gotoScene(Location, choice.Location);
             } else {
                 this.engine.show("&gt; "+this.engine.storyData.ItemError);
@@ -103,8 +181,24 @@ class Location extends Scene {
         }
         else if (choice.Type == "Journal")
         {
-            this.engine.show("&gt; "+this.engine.storyData);
-
+            if(batteryCount > 0) {
+                this.engine.show("&gt; I have " + batteryCount + " batteries left.");
+            }
+            if(fireAxe) {
+                this.engine.show("&gt; I have a fire axe.");
+            }
+            if(IDCard) {
+                this.engine.show("&gt; I have a warden's ID card.");
+            }
+            if(gasMask) {
+                this.engine.show("&gt; I have a gas mask.");
+            }
+            if(egg) {
+                this.engine.show("&gt; I have a strange egg.");
+            }
+            if(lightLevel >= 1) LightLevel++;
+            if(lightLevel == 0) monsterDistance++;
+            this.engine.gotoScene(Location, choice.Location);
         }
         else
         {
@@ -131,6 +225,21 @@ class Location extends Scene {
 class End extends Scene {
     create() {
         this.engine.show("<hr>");
+        this.engine.show("&gt; You have escaped the facility, taking a deep breath of the outside air.<br>");
+        if(gasMask) {
+            this.engine.show("&gt; The mask filters the putrid scent, allowing your lungs a quaint respite.<br> Onward you go, into the desolate world beyond.<br>");
+        } else {
+            this.engine.show("&gt; The putrid scent fills your lungs, making you gag. You feel holes forming in your lungs, and you begin to cough up the blood that seeps into them.<br> You Die.");
+        }
+        if(secret) {
+            this.engine.show("&gt; You have discovered the secret of the facility, and the truth of the monster their experiments wrought.<br>");
+        }
+        if(deadMonster) {
+            this.engine.show("&gt; You have slain the monster, regardless of if it was once human or not.<br>");
+        }
+
+
+
         this.engine.show(this.engine.storyData.Credits);
     }
 }
