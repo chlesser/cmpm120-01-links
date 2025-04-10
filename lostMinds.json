@@ -1,0 +1,324 @@
+{
+    "Title": "Bunker 731",
+    "Credits": "Made by Charles Lesser (clesser@ucsc.edu).",
+    "InitialLocation": "Starting-Cell",
+    "Locations": {
+        "Starting-Cell": {
+            "Body": "",
+            "Choices": [
+                {
+                    "Text": "Stop and Think",
+                    "Type": "Journal",
+                    "Target": "Journal"
+                },
+                {
+                    "Text": "Open the Door",
+                    "Type": "Door",
+                    "Target": "West-Hallway"
+                },
+                {
+                    "Text": "Grab a battery",
+                    "Enabled": true,
+                    "Location": "Starting-Cell",
+                    "Type": "Item",
+                    "Item": "Battery",
+                    "Response": "You pick up a battery off a body. It is heavy and cold in your hand, but you feel a sense of security holding it."
+                }
+            ]
+        },
+        "Error": {
+            "Body": "Congrats, you broke the game. All good things come to an end."
+        },
+        "Holding-Cell": {
+            "Body": "",
+            "Choices": [
+                {
+                    "Text": "Stop and Think",
+                    "Type": "Journal",
+                    "Target": "Journal"
+                },
+                {
+                    "Text": "Exit",
+                    "Type": "Door",
+                    "Target": "West-Hallway"
+                },
+                {
+                    "Text": "Grab a battery",
+                    "Enabled": true,
+                    "Location": "Holding-Cell",
+                    "Type": "Item",
+                    "Item": "Battery",
+                    "Response": "You pick up a battery off a body. It is heavy and cold in your hand, but you feel a sense of security holding it."
+                }
+            ]
+        },
+        "West-Hallway": {
+            "Body": "",
+            "Choices": [
+                {
+                    "Text": "Stop and Think",
+                    "Type": "Journal",
+                    "Target": "Journal"
+                },
+                {
+                    "Text": "Northwest Door",
+                    "Type": "Door",
+                    "Target": "Starting-Cell"
+                },
+                {
+                    "Text": "Southwest Door",
+                    "Type": "Door",
+                    "Target": "Holding-Cell"
+                },
+                {
+                    "Text": "South Door",
+                    "Type": "Door",
+                    "Target": "Officer"
+                },
+                {
+                    "Text": "East Door",
+                    "Type": "Door",
+                    "Target": "Center"
+                }
+            ]
+        },
+        "Officer": {
+            "Body": "",
+            "Choices": [
+                {
+                    "Text": "Stop and Think",
+                    "Type": "Journal",
+                    "Target": "Journal"
+                },
+                {
+                    "Text": "Exit",
+                    "Type": "Door",
+                    "Target": "West-Hallway"
+                },
+                {
+                    "Text": "Search the Well-Uniformed Body",
+                    "Enabled": true,
+                    "Location": "Officer",
+                    "Type": "Item",
+                    "Item": "ID",
+                    "Response": "You turn over the body, and find a well-worn ID card. It is covered in blood, but you can make out the name: Warden Trellim Rex."
+                }
+            ]
+        },
+        "Center": {
+            "Body": "",
+            "Choices": [
+                {
+                    "Text": "Stop and Think",
+                    "Type": "Journal",
+                    "Target": "Journal"
+                },
+                {
+                    "Text": "Massive Northern Door"
+                },
+                {
+                    "Text": "East Door",
+                    "Type": "Door",
+                    "Target": "East-Hallway"
+                },
+                {
+                    "Text": "West Door",
+                    "Type": "Door",
+                    "Target": "West-Hallway"
+                },
+                {
+                    "Text": "South Door",
+                    "Type": "Door",
+                    "Target": "Warden"
+                }
+            ]
+        },
+        "East-Hallway": {
+            "Body": "",
+            "Choices": [
+                {
+                    "Text": "Stop and Think",
+                    "Type": "Journal",
+                    "Target": "Journal"
+                },
+                {
+                    "Text": "South Door",
+                    "Type": "Door",
+                    "Target": "Storage"
+                },
+                {
+                    "Text": "Northeast Door",
+                    "Type": "Door",
+                    "Target": "Laboratory"
+                }
+            ]
+        },
+        "Warden": {
+            "Body": "",
+            "Choices": [
+                {
+                    "Text": "Stop and Think",
+                    "Target": "Journal"
+                },
+                {
+                    "Text": "Exit",
+                    "Type": "Door",
+                    "Target": "Center"
+                },
+                {
+                    "Text": "Grab a battery",
+                    "Enabled": true,
+                    "Location": "Warden",
+                    "Type": "Item",
+                    "Item": "Battery",
+                    "Response": "You pick up a battery off the desk. It is heavy and cold in your hand, but you feel a sense of security holding it."
+                },
+                {
+                    "Text": "Grab the fireaxe",
+                    "Enabled": true,
+                    "Location": "Warden",
+                    "Type": "Item",
+                    "Item": "Fireaxe",
+                    "Response": "You rip the fireaxe off the wall. You doubt it can kill the monster, but maybe if you catch it off guard..."
+                }
+            ]
+        },
+        "Exit": {
+            "Body": ""
+        },
+        "Storage": {
+            "Body": "",
+            "Choices": [
+                {
+                    "Text": "Stop and Think",
+                    "Type": "Journal",
+                    "Target": "Journal"
+                },
+                {
+                    "Text": "Exit",
+                    "Type": "Door",
+                    "Target": "East-Hallway"
+                },
+                {
+                    "Text": "Grab a battery",
+                    "Enabled": true,
+                    "Location": "Storage",
+                    "Type": "Item",
+                    "Item": "Battery",
+                    "Response": "You pick up a battery off a body. It is heavy and cold in your hand, but you feel a sense of security holding it."
+                }
+            ]
+        },
+        "Laboratory": {
+            "Body": "",
+            "Choices": [
+                {
+                    "Text": "Stop and Think",
+                    "Type": "Journal",
+                    "Target": "Journal"
+                },
+                {
+                    "Text": "Exit",
+                    "Type": "Door",
+                    "Target": "East-Hallway"
+                },
+                {
+                    "Text": "Enter the breach...?",
+                    "Type": "Door",
+                    "Target": "Breach"
+                }
+            ]
+        },
+        "Breach": {
+            "Body": "",
+            "Choices": [
+                {
+                    "Text": "Stop and Think",
+                    "Type": "Journal",
+                    "Target": "Journal"
+                },
+                {
+                    "Text": "Northeast Hole",
+                    "Type": "Door",
+                    "Target": "Laboratory"
+                },
+                {
+                    "Text": "Southeast Hole",
+                    "Type": "Door",
+                    "Target": "Chamber"
+                },
+                {
+                    "Text": "Continue Deeper",
+                    "Type": "Door",
+                    "Target": "Nest"
+                },
+                {
+                    "Text": "Grab a battery",
+                    "Enabled": true,
+                    "Location": "Breach",
+                    "Type": "Item",
+                    "Item": "Battery",
+                    "Response": "You pick up a battery off a body. It is heavy and cold in your hand, but you feel a sense of security holding it."
+                }
+            ]
+        },
+        "Chamber": {
+            "Body": "",
+            "Choices": [
+                {
+                    "Text": "Stop and Think",
+                    "Type": "Journal",
+                    "Target": "Journal"
+                },
+                {
+                    "Text": "Exit",
+                    "Type": "Door",
+                    "Target": "Breach"
+                },
+                {
+                    "Text": "Grab the Gas Mask",
+                    "Enabled": true,
+                    "Location": "Chamber",
+                    "Type": "Item",
+                    "Item": "Gas",
+                    "Response": "You gingerly pick up the gas mask, and put it on. The air is still stale, but you can breathe well again."
+                }
+            ]
+        },
+        "Nest": {
+            "Body": "",
+            "Choices": [
+                {
+                    "Text": "Stop and Think",
+                    "Type": "Journal",
+                    "Target": "Journal"
+                },
+                {
+                    "Text": "Exit",
+                    "Type": "Door",
+                    "Target": "Breach"
+                },
+                {
+                    "Text": "Grab the Egg",
+                    "Enabled": true,
+                    "Location": "Nest",
+                    "Type": "Item",
+                    "Item": "Egg",
+                    "Response": "You gingerly take the egg. Perhaps you can examine this."
+                }
+            ]
+        }
+    },
+    "LightDesc": [
+        "The generator is chugging away, and the light is very clear.",
+        "The generator has hiccups, and the light flickers.",
+        "The generator is sputtering, and the light is dim.",
+        "The generator is dead. The light is out.",
+        "You are in complete darkness."
+    ],
+    "Monster-Desc": [
+        "You hear a growl faintly echo through the halls of the facility.",
+        "You hear the sound of claws dragging against the floor. It is getting closer.",
+        "A door opens and slams shut. A hideous screech echoes through the room. You are not alone."
+    ]
+}

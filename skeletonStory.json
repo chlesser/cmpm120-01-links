@@ -1,0 +1,71 @@
+{
+    "Title": "Skeleton Story",
+    "Credits": "Jerry the bone man made this.",
+    "InitialLocation": "Bone-Pit",
+    "Locations": {
+        "Bone-Pit": {
+            "Body": "This is the Bone Pit, a pile of bones. Your fellow bone guys haven't animated yet.",
+            "Choices": [
+                {
+                    "Text": "Green Light",
+                    "Target": "Necromancer-Cave"
+                },
+                {
+                    "Text": "Crackling Fire",
+                    "Target": "Fire-Pit"
+                },
+                {
+                    "Text": "Lie back down, maybe the other bone guys had it right?",
+                    "Target": "Chillin"
+                }
+            ]
+        },
+        "Necromancer-Cave": {
+            "Body": "The necromancer who raised you is busy raising more. She looks annoyed.",
+            "Choices": [
+                {
+                    "Text": "Impress her with your bone dancing",
+                    "Target": "Death"
+                },
+                {
+                    "Text": "Leave her to her frustrations",
+                    "Target": "Bone-Pit"
+                }
+            ]
+        },
+        "Death": {
+            "Body": "In a blink of an eye, you find yourself in the void once more. Did you die? How? You don't remember.",
+            "Choices": [
+                {
+                    "Text": "Feel the pull of magic",
+                    "Target": "Bone-Pit"
+                }
+            ]
+        },
+        "Fire-Pit": {
+            "Body": "The next room over, a fire pit has a boar roasting on the spit. If you had a mouth, you would salivate.",
+            "Choices": [
+                {
+                    "Text": "Try to take a bite?",
+                    "Target": "Ogre"
+                },
+                {
+                    "Text": "Leave it alone",
+                    "Target": "Bone-Pit"
+                }
+            ]
+        },
+        "Ogre": {
+            "Body": "You feel a massive hand on your shoulder. An ogre picks you up to eye level. \n \"Sorry, nothing personal man. Just how its gotta be.\" Then, he smashes you into the ground.",
+            "Choices": [
+                {
+                    "Text": "Embrace the crunching sounds",
+                    "Target": "Death"
+                }
+            ]
+        },
+        "Chillin": {
+            "Body": "You are now a pile of bones, lying in the Bone Pit. You feel the pull of magic, but you don't care. You are happy here."
+        }
+    }
+}
