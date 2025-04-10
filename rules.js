@@ -42,17 +42,17 @@ class Location extends Scene {
                 this.engine.addChoice(choice.Text, choice);
             }
         } else {
-            let temp;
-            let num;
-            while(!temp) {
-                num = Math.ceil(Math.random() * (locationData.Choices.length - 1));
-                if(locationData.Choices[num].Type == "Item" && locationData.Choices[num].Enabled || locationData.Choices[num].Type != "Item") {
-                    console.log("found a choice", locationData.Choices[num].Text, num);
-                    temp = locationData.Choices[num];
-                }
-            }
+            // let temp;
+            // let num;
+            // while(!temp) {
+            //     num = Math.ceil(Math.random() * (locationData.Choices.length - 1));
+            //     if(locationData.Choices[num].Type == "Item" && locationData.Choices[num].Enabled || locationData.Choices[num].Type != "Item") {
+            //         console.log("found a choice", [num].Text, num);
+            //         temp = locationData.Choices[num];
+            //     }
+            // }
             
-            this.engine.addChoice("Randomly Explore", temp);
+            this.engine.addChoice("Randomly Explore", locationData.Choices[1]);
         }
     }
 

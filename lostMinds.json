@@ -61,6 +61,11 @@
                     "Target": "Journal"
                 },
                 {
+                    "Text": "East Door",
+                    "Type": "Door",
+                    "Target": "Center"
+                },
+                {
                     "Text": "Northwest Door",
                     "Type": "Door",
                     "Target": "Starting-Cell"
@@ -74,11 +79,6 @@
                     "Text": "South Door",
                     "Type": "Door",
                     "Target": "Officer"
-                },
-                {
-                    "Text": "East Door",
-                    "Type": "Door",
-                    "Target": "Center"
                 }
             ]
         },
