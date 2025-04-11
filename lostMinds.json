@@ -4,15 +4,17 @@
     "InitialLocation": "Starting-Cell",
     "Locations": {
         "Starting-Cell": {
-            "Body": "",
+            "Body": "<br>[As you enter this room, you see several rows of beds, motionless bodies flopped onto the ground on them or next to them.<br>You get a sudden flash of multiple suited individuals holding you down as they inject you with a syringe.<br>You shudder.]<br><br>",
+            "Visited": false,
             "Choices": [
                 {
                     "Text": "Stop and Think",
                     "Type": "Journal",
-                    "Target": "Journal"
+                    "Target": "Starting-Cell"
                 },
                 {
                     "Text": "Open the Door",
+                    "KnownText": "To the West Hallway",
                     "Type": "Door",
                     "Target": "West-Hallway"
                 },
@@ -30,15 +32,17 @@
             "Body": "Congrats, you broke the game. All good things come to an end."
         },
         "Holding-Cell": {
-            "Body": "",
+            "Body": "<br>[You see several industrial beds, with bodies that were once strapped down all torn to pieces.<br>Looks like this door's seal wasn't so secure.<br>You notice the seal's control panel is slashed open, and a battery is exposed.]<br><br>",
+            "Visited": false,
             "Choices": [
                 {
                     "Text": "Stop and Think",
                     "Type": "Journal",
-                    "Target": "Journal"
+                    "Target": "Holding-Cell"
                 },
                 {
                     "Text": "Exit",
+                    "KnownText": "To the West Hallway",
                     "Type": "Door",
                     "Target": "West-Hallway"
                 },
@@ -53,45 +57,52 @@
             ]
         },
         "West-Hallway": {
-            "Body": "",
+            "Body": "<br>[This hallway seems to be a connection. More bodies lie on the ground, but not as many as the generator room.<br>There is a door to the northwest with a seal on it. You woke up there.<br>There is a door to the southwest with a similar seal.<br>There is a door to the south.]<br><br>",
+            "Visited": false,
             "Choices": [
                 {
                     "Text": "Stop and Think",
                     "Type": "Journal",
-                    "Target": "Journal"
-                },
-                {
-                    "Text": "East Door",
-                    "Type": "Door",
-                    "Target": "Center"
+                    "Target": "West-Hallway"
                 },
                 {
                     "Text": "Northwest Door",
+                    "KnownText": "To the Starting Cell",
                     "Type": "Door",
                     "Target": "Starting-Cell"
                 },
                 {
                     "Text": "Southwest Door",
+                    "KnownText": "To the other Holding Cell",
                     "Type": "Door",
                     "Target": "Holding-Cell"
                 },
                 {
+                    "Text": "East Door",
+                    "KnownText": "To the Generator Room",
+                    "Type": "Door",
+                    "Target": "Center"
+                },
+                {
                     "Text": "South Door",
+                    "KnownText": "To the Officer's Room",
                     "Type": "Door",
                     "Target": "Officer"
                 }
             ]
         },
         "Officer": {
-            "Body": "",
+            "Body": "<br>[This room has several suited bodies, including one with several medals. There are firearms here, all broken and smashed.<br>A desk is pushed over, and splintered in two. Most of the bodies are lying behind it.<br>At least they tried to fight back somewhat.]<br><br>",
+            "Visited": false,
             "Choices": [
                 {
                     "Text": "Stop and Think",
                     "Type": "Journal",
-                    "Target": "Journal"
+                    "Target": "Officer"
                 },
                 {
                     "Text": "Exit",
+                    "KnownText": "To the West Hallway",
                     "Type": "Door",
                     "Target": "West-Hallway"
                 },
@@ -106,28 +117,33 @@
             ]
         },
         "Center": {
-            "Body": "",
+            "Body": "<br>[The florescent light briefly blinds you, but the facility slowly comes into view. The tiled floors are old and uncleaned, dirt tracks of some alien foot crisscrossing back and forth. <br>The dull humming of the lights is the only distraction from the blood-soaked walls, corpses of men and women in lab coats and suits strewn about. <br>It looks like a series of large knives slashed into some, and others were pierced or ripped off by something with immense strength.<br>To the west is the door you came from. To the east is another one that mirrors the first. <br>A northern door is incredibly big, but is covered in warning and poison symbols. Most of the words have been torn off, but you get the idea of what lies outside. <br>To the south, a door has a keycard scanner next to it. It looks official, and though some of the nameplate has been ripped apart, you see 'Wa-----im Rex'<br>The scene before you accompanied by a far-off howl to the east chills you. Who are you? How did you end up here?]<br><br>",
+            "Visited": false,
             "Choices": [
                 {
                     "Text": "Stop and Think",
                     "Type": "Journal",
-                    "Target": "Journal"
+                    "Target": "Center"
                 },
                 {
-                    "Text": "Massive Northern Door"
-                },
-                {
-                    "Text": "East Door",
-                    "Type": "Door",
-                    "Target": "East-Hallway"
+                    "Text": "Massive Northern Door",
+                    "Type": "End"
                 },
                 {
                     "Text": "West Door",
+                    "KnownText": "To the West Hallway",
                     "Type": "Door",
                     "Target": "West-Hallway"
                 },
                 {
+                    "Text": "East Door",
+                    "KnownText": "To the East Hallway",
+                    "Type": "Door",
+                    "Target": "East-Hallway"
+                },
+                {
                     "Text": "South Door",
+                    "KnownText": "To the Warden's Office",
                     "Type": "Door",
                     "Target": "Warden",
                     "FailText": "The door is locked. You need a keycard to open it."
@@ -138,50 +154,54 @@
                     "Location": "Center",
                     "Type": "Station",
                     "Station": "Generator",
-                    "ActiveResponse": "You turn the generator on. It sputters to life, and the lights flicker on. Regaining your sight elates you, but a far-off howl to the east chills you.",
+                    "ActiveResponse": "You turn the generator on. It sputters to life, and the lights flicker on.",
                     "InactiveResponse": "You need a battery to power the generator."
                 }
             ]
         },
         "East-Hallway": {
-            "Body": "",
+            "Body": "<br>[This hallway seems to be a connection. More bodies lie on the ground, but not as many as the generator room.<br>There is a door to the northeast with a seal on it.<br>There may once have been a functioning door to the southeast, but it has been bent and broken. That path is blocked.<br>There is a door to the south.]<br><br>",
+            "Visited": false,
             "Choices": [
                 {
                     "Text": "Stop and Think",
                     "Type": "Journal",
-                    "Target": "Journal"
+                    "Target": "East-Hallway"
                 },
                 {
-                    "Text": "South Door",
-                    "Type": "Door",
-                    "Target": "Storage"
-                },
-                {
-                    "Text": "Northeast Door",
-                    "Type": "Door",
-                    "Target": "Laboratory"
-                }
-            ]
-        },
-        "Warden": {
-            "Body": "",
-            "Choices": [
-                {
-                    "Text": "Stop and Think",
-                    "Target": "Journal"
-                },
-                {
-                    "Text": "Exit",
+                    "Text": "West Door",
+                    "KnownText": "To the Generator Room",
                     "Type": "Door",
                     "Target": "Center"
                 },
                 {
-                    "Text": "Grab a battery",
-                    "Enabled": true,
-                    "Location": "Warden",
-                    "Type": "Item",
-                    "Item": "Battery",
-                    "Response": "You pick up a battery off the desk. It is heavy and cold in your hand, but you feel a sense of security holding it."
+                    "Text": "Northeast Door",
+                    "KnownText": "To the Laboratory",
+                    "Type": "Door",
+                    "Target": "Laboratory"
+                },
+                {
+                    "Text": "South Door",
+                    "KnownText": "To the Storage Room",
+                    "Type": "Door",
+                    "Target": "Storage"
+                }
+            ]
+        },
+        "Warden": {
+            "Body": "<br>[This room is untouched. Looks like the warden took all potential weapons with him, though.<br>It provides a brief respite from the horrors of the earlier rooms, though you doubt the monster couldn't get into here as well.<br>Hanging on the wall is a Fireaxe.]<br><br>",
+            "Visited": false,
+            "Choices": [
+                {
+                    "Text": "Stop and Think",
+                    "Type": "Journal",
+                    "Target": "Warden"
+                },
+                {
+                    "Text": "Exit",
+                    "KnownText": "To the Generator Room",
+                    "Type": "Door",
+                    "Target": "Center"
                 },
                 {
                     "Text": "Grab the fireaxe",
@@ -197,15 +217,17 @@
             "Body": ""
         },
         "Storage": {
-            "Body": "",
+            "Body": "<br>[Once a storage room, but all the food is spoiled and the metal wasted.<br>There are even more bodies on the ground, killed but uneaten. Does this creature need to sustain itself?<br>You do notice, however, a battery sticking out of one of the few untouched boxes.]<br><br>",
+            "Visited": false,
             "Choices": [
                 {
                     "Text": "Stop and Think",
                     "Type": "Journal",
-                    "Target": "Journal"
+                    "Target": "Storage"
                 },
                 {
                     "Text": "Exit",
+                    "KnownText": "To the East Hallway",
                     "Type": "Door",
                     "Target": "East-Hallway"
                 },
@@ -220,20 +242,23 @@
             ]
         },
         "Laboratory": {
-            "Body": "",
+            "Body": "<br>[This was once clearly a laboratory, given by the increase in lab-coated bodies.<br>A single analysis station sputters with the light of the generator. Looks like, given an organic material, it can describe the genetic match.<br>You doubt that will come in handy. Especially when faced with a far more pressing issue.<br>To the east, a massive hole in the wall breaks out of the concrete and into the rocks outside the facility, continuing down a long tunnel.<br>Looks like you're underground after all.]<br><br>",
+            "Visited": false,
             "Choices": [
                 {
                     "Text": "Stop and Think",
                     "Type": "Journal",
-                    "Target": "Journal"
+                    "Target": "Laboratory"
                 },
                 {
                     "Text": "Exit",
+                    "KnownText": "To the East Hallway",
                     "Type": "Door",
                     "Target": "East-Hallway"
                 },
                 {
                     "Text": "Enter the breach...?",
+                    "KnownText": "To the Breach",
                     "Type": "Door",
                     "Target": "Breach"
                 },
@@ -244,30 +269,34 @@
                     "Type": "Station",
                     "Station": "Lab",
                     "ActiveResponse": "You put the egg in the lab. After a few moments, the screen pops out a message: 'Egg matches the DNA of patient #731. Human DNA retention: 90%'",
-                    "InactiveResponse": "You need something to analyze to power the generator."
+                    "InactiveResponse": "You need something organic to analyze."
                 }
             ]
         },
         "Breach": {
-            "Body": "",
+            "Body": "<br>[A single body is in this room, their weapon long-destroyed. However, it looks like a battery is poking out of the back.<br>Additionally, the hole continues in two directions - towards the blocked path from earlier, and deeper into the rock.<br>You hear a faint snoring deeper in the cavern.]<br><br>",
+            "Visited": false,
             "Choices": [
                 {
                     "Text": "Stop and Think",
                     "Type": "Journal",
-                    "Target": "Journal"
+                    "Target": "Breach"
                 },
                 {
                     "Text": "Northeast Hole",
+                    "KnownText": "To the Laboratory",
                     "Type": "Door",
                     "Target": "Laboratory"
                 },
                 {
                     "Text": "Southeast Hole",
+                    "KnownText": "To the Torture Chamber",
                     "Type": "Door",
                     "Target": "Chamber"
                 },
                 {
                     "Text": "Continue Deeper",
+                    "KnownText": "To the Nest",
                     "Type": "Door",
                     "Target": "Nest"
                 },
@@ -282,15 +311,17 @@
             ]
         },
         "Chamber": {
-            "Body": "",
+            "Body": "<br>[As soon as you enter this room, before even looking around, you know what it is.<br>This is where they experimented on you, and all the other prisoners held here.<br>A rack of syringes and surgical tools is overturned in the corner of the room. A gas mask lies beside them.<br>There are no bodies here. Just lots of blood.]<br><br>",
+            "Visited": false,
             "Choices": [
                 {
                     "Text": "Stop and Think",
                     "Type": "Journal",
-                    "Target": "Journal"
+                    "Target": "Chamber"
                 },
                 {
                     "Text": "Exit",
+                    "KnownText": "To the Breach",
                     "Type": "Door",
                     "Target": "Breach"
                 },
@@ -305,15 +336,17 @@
             ]
         },
         "Nest": {
-            "Body": "",
+            "Body": "<br>[The stink in this room is unmatched by anything you've ever experienced. You see, with the remnants of the florescent light, the source of your fear.<br>A gangly creature, rippling with muscles. Its six limbs seem to be both arms and legs at the same time, all tipped with razer-sharp claws.<br>It's maw extends forth, teeth long, sharped, crisscrossed and protruding from its foul snout. Its eyes are sunken into its head.<br>And yet, then neck is thin and slender, even thinner than yours.<br>It slumbers in an alcove in the ground, curled around an odd chitinous egg.]<br><br>",
+            "Visited": false,
             "Choices": [
                 {
                     "Text": "Stop and Think",
                     "Type": "Journal",
-                    "Target": "Journal"
+                    "Target": "Nest"
                 },
                 {
                     "Text": "Exit",
+                    "KnownText": "To the Breach",
                     "Type": "Door",
                     "Target": "Breach"
                 },
@@ -327,19 +360,19 @@
                 },
                 {
                     "Text": "Kill the Monster",
-                    "Enabled": true,
+                    "Enabled": false,
                     "Location": "Nest",
                     "Type": "Station",
-                    "Station": "Lab",
+                    "Station": "Monster",
                     "ActiveResponse": "The monster lays on the ground, its grotesque form twitching. Without daring to breathe, you take the fireaxe and swing it down, severing its head from its gangly form.",
                     "InactiveResponse": "Though the monster sleeps, you have no weapon to kill it with."
                 },
                 {
                     "Text": "Destroy the Egg",
-                    "Enabled": true,
+                    "Enabled": false,
                     "Location": "Nest",
                     "Type": "Station",
-                    "Station": "Lab",
+                    "Station": "Smash",
                     "ActiveResponse": "Your mind clouds with rage. This creature has hunted you for far too long. You will ensure its reign of terror does not ripen."
                 }
             ]
@@ -352,7 +385,7 @@
         "The generator is dead. The light is out.",
         "You are in complete darkness."
     ],
-    "Monster-Desc": [
+    "MonsterDesc": [
         "You hear a growl faintly echo through the halls of the facility.",
         "You hear the sound of claws dragging against the floor. It is getting closer.",
         "A door opens and slams shut. A hideous screech echoes through the room. You are not alone."
