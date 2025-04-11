@@ -250,6 +250,9 @@ class Location extends Scene {
             if(!(batteryCount > 0 || fireAxe || IDCard || gasMask || egg)) {
                 this.engine.show("&gt; You have nothing.");
             }
+            if(setOrder < 4 && setOrder >= 0) {
+                setOrder--;
+            }
             // if(lightLevel >= 1) lightLevel++;
             // if(lightLevel == 0) monsterDistance++;
             this.engine.gotoScene(Location, choice.Target);
